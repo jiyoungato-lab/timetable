@@ -265,9 +265,13 @@ body.view-mode .toolbar-bar,body.view-mode .bulk-bar,body.view-mode .progress-ba
 body.view-mode .overtime-warn,body.view-mode .td-drag,body.view-mode .td-select,
 body.view-mode .td-actions,body.view-mode .td-done,body.view-mode .td-img,
 body.view-mode .img-remove-btn,body.view-mode .img-upload-btn,
-body.view-mode .dur-btn,body.view-mode .autosave-status,
+body.view-mode .dur-btn,body.view-mode .autosave-status,body.view-mode .author-badge,
+body.view-mode thead .th-drag,body.view-mode thead .td-select,
 body.view-mode thead th.th-actions,body.view-mode thead th:last-child{display:none !important;}
 body.view-mode .cell-input,body.view-mode select.cell-input{pointer-events:none;border-color:transparent !important;background:transparent !important;appearance:none;-webkit-appearance:none;background-image:none !important;}
+body.view-mode input[type="date"].field-input,body.view-mode input[type="time"].field-input{color:transparent !important;}
+body.view-mode .date-display,body.view-mode .time-display{display:inline !important;}
+.date-display,.time-display{display:none;position:absolute;font-family:var(--font-mono);font-size:13px;font-weight:500;color:var(--color-text);pointer-events:none;}
 .view-mode-banner{display:none;background:var(--color-primary);color:#fff;font-size:12px;font-weight:500;padding:10px var(--space-md);text-align:center;letter-spacing:.3px;margin-bottom:16px;border-radius:var(--radius);}
 body.view-mode .view-mode-banner{display:none !important;}
 
@@ -1055,6 +1059,17 @@ function copyShareURL() {
 /** 읽기 전용 모드 활성화 */
 function activateViewMode() {
   document.body.classList.add('view-mode');
+  // 날짜/시간 input을 텍스트로 교체 표시
+  ['shootingDate','startTime'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.value;
+    const span = document.createElement('span');
+    span.className = id === 'shootingDate' ? 'date-display' : 'time-display';
+    span.textContent = val || '—';
+    el.parentNode.style.position = 'relative';
+    el.parentNode.appendChild(span);
+  });
   // 편집 관련 이벤트 차단
   document.getElementById('timetable').addEventListener('click', e => {
     if (e.target.closest('.cell-input, .done-checkbox, .row-btn, .dur-btn')) {
