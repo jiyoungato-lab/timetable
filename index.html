@@ -87,7 +87,7 @@ body{font-family:var(--font-base);font-size:14px;line-height:1.5;background:var(
 #startTime::-webkit-calendar-picker-indicator{display:none;}
 #startTime::-webkit-datetime-edit-ampm-field{display:none;}
 #startTime::-webkit-inner-spin-button{display:none;}
-#location{min-width:60px;}
+#location{min-width:80px;}
 textarea.field-input{display:none;}
 
 /* 요약 카드 */
@@ -263,12 +263,13 @@ kbd.shortcut{font-family:var(--font-mono);font-size:10px;background:#f0f2f5;bord
 /* 읽기 전용 */
 body.view-mode .toolbar-bar,body.view-mode .bulk-bar,body.view-mode .progress-bar-wrap,
 body.view-mode .overtime-warn,body.view-mode .td-drag,body.view-mode .td-select,
-body.view-mode .td-actions,body.view-mode .td-done .done-checkbox,
+body.view-mode .td-actions,body.view-mode .td-done,body.view-mode .td-img,
 body.view-mode .img-remove-btn,body.view-mode .img-upload-btn,
-body.view-mode .dur-btn{display:none !important;}
+body.view-mode .dur-btn,body.view-mode .autosave-status,
+body.view-mode thead th.th-actions,body.view-mode thead th:last-child{display:none !important;}
 body.view-mode .cell-input,body.view-mode select.cell-input{pointer-events:none;border-color:transparent !important;background:transparent !important;appearance:none;-webkit-appearance:none;background-image:none !important;}
 .view-mode-banner{display:none;background:var(--color-primary);color:#fff;font-size:12px;font-weight:500;padding:10px var(--space-md);text-align:center;letter-spacing:.3px;margin-bottom:16px;border-radius:var(--radius);}
-body.view-mode .view-mode-banner{display:block;}
+body.view-mode .view-mode-banner{display:none !important;}
 
 /* 라이트박스 */
 .lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;align-items:center;justify-content:center;}
