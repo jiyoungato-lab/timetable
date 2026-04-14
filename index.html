@@ -1746,7 +1746,14 @@ function resetAll() {
   setAutosaveStatus('초기화됨');
 }
 
-function printTable() { window.print(); }
+function printTable() {
+  const date = document.getElementById('shootingDate').value || '';
+  const proj = document.getElementById('projectName').value || '촬영 타임테이블';
+  const prev = document.title;
+  document.title = [date, proj].filter(Boolean).join('_');
+  window.print();
+  document.title = prev;
+}
 
 /* ============================================================
    CSV 내보내기 (fix #5 로컬 날짜)
